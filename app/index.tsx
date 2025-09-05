@@ -68,3 +68,92 @@ export default function Landing() {
     </ScrollView>
   );
 }
+
+import React from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { LineChart, Line, XAxis, YAxis, Tooltip, AreaChart, Area } from 'recharts';
+import { useRouter } from 'expo-router';
+
+const barkData = [
+  { time: '08:00', barks: 3 },
+  { time: '10:00', barks: 6 },
+  { time: '12:00', barks: 1 },
+  { time: '14:00', barks: 4 },
+  { time: '16:00', barks: 8 },
+  { time: '18:00', barks: 2 },
+  { time: '20:00', barks: 5 },
+];
+
+const hrData = [
+  { time: '08:00', hr: 75 },
+  { time: '10:00', hr: 120 }, // spike → car ride
+  { time: '12:00', hr: 80 },
+  { time: '14:00', hr: 110 }, // spike → saw another dog
+  { time: '16:00', hr: 90 },
+  { time: '18:00', hr: 70 },
+  { time: '20:00', hr: 85 },
+];
+
+export default function HomePage() {
+  const router = useRouter();
+
+  return (
+    <ScrollView contentContainerStyle={{ padding: 20 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>
+        DogWearable Insights
+      </Text>
+
+      {/* Bark graph */}
+      <Text style={{ fontSize: 18, marginBottom: 5 }}>Barks today</Text>
+      <LineChart
+        width={350}
+        height={200}
+        data={barkData}
+        style={{ marginBottom: 20 }}
+      >
+        <XAxis dataKey="time" />
+        <YAxis />
+        <Tooltip />
+        <Line type="monotone" dataKey="barks" stroke="#ff6b6b" />
+      </LineChart>
+
+      {/* Heart rate graph */}
+      <Text style={{ fontSize: 18, marginBottom: 5 }}>Heart rate today</Text>
+      <AreaChart
+        width={350}
+        height={200}
+        data={hrData}
+        style={{ marginBottom: 20 }}
+      >
+        <XAxis dataKey="time" />
+        <YAxis />
+        <Tooltip />
+        <Area type="monotone" dataKey="hr" stroke="#4dabf7" fill="#74c0fc" />
+      </AreaChart>
+
+      {/* Example clickable insights */}
+      <Text style={{ fontSize: 20, fontWeight: '600', marginTop: 10, marginBottom: 10 }}>
+        Insights
+      </Text>
+      <TouchableOpacity
+        onPress={() => router.push('/insights/car')}
+        style={{ padding: 12, marginBottom: 8, backgroundColor: '#ffe066', borderRadius: 10 }}
+      >
+        <Text>🚗 Spike in HR around 10:00 → likely car ride</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => router.push('/insights/other-dog')}
+        style={{ padding: 12, marginBottom: 8, backgroundColor: '#fab005', borderRadius: 10 }}
+      >
+        <Text>🐕 HR + barking around 14:00 → saw another dog</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => router.push('/insights/stress')}
+        style={{ padding: 12, marginBottom: 8, backgroundColor: '#ffa8a8', borderRadius: 10 }}
+      >
+        <Text>⚠️ Period of elevated HR with whining → possible stress</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+}
+
