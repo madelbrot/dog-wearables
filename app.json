@@ -7,7 +7,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -16,7 +18,11 @@
         "NSLocationWhenInUseUsageDescription": "Bluetooth scanning may require location access.",
         "NSMicrophoneUsageDescription": "This app uses the microphone to detect dog vocalizations on-device.",
         "NSUserTrackingUsageDescription": "We use notifications to alert you about important dog insights.",
-        "UIBackgroundModes": ["processing", "bluetooth-central", "remote-notification"]
+        "UIBackgroundModes": [
+          "processing",
+          "bluetooth-central",
+          "remote-notification"
+        ]
       }
     },
     "android": {
@@ -29,7 +35,20 @@
       "useNextNotificationsApi": true
     },
     "plugins": [
-      ["expo-build-properties", { "ios": { "useFrameworks": "static" } }]
-    ]
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bf9e483c-1c8c-4f5b-a0cc-5e46da142644"
+      }
+    },
+    "owner": "madelbrot"
   }
 }
