@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "DogWearable",
+    "slug": "dogwearable",
+    "scheme": "dogwearable",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "This app uses Bluetooth to connect to your dog wearable.",
+        "NSBluetoothPeripheralUsageDescription": "Bluetooth is required to read heart rate.",
+        "NSLocationWhenInUseUsageDescription": "Bluetooth scanning may require location access.",
+        "NSMicrophoneUsageDescription": "This app uses the microphone to detect dog vocalizations on-device.",
+        "NSUserTrackingUsageDescription": "We use notifications to alert you about important dog insights.",
+        "UIBackgroundModes": ["processing", "bluetooth-central", "remote-notification"]
+      }
+    },
+    "android": {
+      "permissions": [
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "useNextNotificationsApi": true
+    },
+    "plugins": [
+      ["expo-build-properties", { "ios": { "useFrameworks": "static" } }]
+    ]
+  }
+}
